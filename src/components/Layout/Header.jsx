@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-
+import { useCart } from "../../context/CartContext";
 import styled from "styled-components";
 
 const Wrapper = styled.header`
@@ -29,7 +29,7 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function Header() {
-  const cartCount = 0; // placeholder
+  const { cartCount } = useCart();
 
   return (
     <Wrapper>
