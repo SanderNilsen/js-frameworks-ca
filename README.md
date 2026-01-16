@@ -4,11 +4,7 @@ This project is a React-based eCommerce application built as part of the Noroff 
 
 The application demonstrates usage of React with routing, API integration, global state management, form validation, and styled-components.
 
----
-
 ## Live demo
-
----
 
 ## Features
 
@@ -21,8 +17,6 @@ The application demonstrates usage of React with routing, API integration, globa
 - Global layout with header and footer
 - Styled using styled-components
 
----
-
 ## Tech stack
 
 - **React** (Create React App)
@@ -31,13 +25,9 @@ The application demonstrates usage of React with routing, API integration, globa
 - **Context API + useReducer**
 - **Noroff Online Shop API**
 
----
-
 ## API
 
 Products are fetched from the [Noroff API](https://v2.api.noroff.dev/online-shop)
-
----
 
 ## Getting started locally
 
