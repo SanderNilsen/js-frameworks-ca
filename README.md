@@ -6,6 +6,8 @@ The application demonstrates usage of React with routing, API integration, globa
 
 ## Live demo
 
+[Netlify Website](https://noroff-react-ca.netlify.app/)
+
 ## Features
 
 - Product listing fetched from Noroff API
