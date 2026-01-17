@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useCart } from "../context/CartContext";
+import { ButtonLink } from "../components/ui/Button";
 
 const Wrapper = styled.div`
   max-width: 700px;
@@ -20,7 +20,7 @@ export default function CheckoutSuccess() {
     <Wrapper>
       <h1>Success!</h1>
       <p>Your order has been placed.</p>
-      <Link to="/">Back to store</Link>
+      <ButtonLink to="/">Back to store</ButtonLink>
     </Wrapper>
   );
 }

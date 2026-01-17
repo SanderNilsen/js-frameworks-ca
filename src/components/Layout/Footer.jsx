@@ -1,15 +1,17 @@
 import styled from "styled-components";
+import Container from "../ui/Container";
 
 const Wrapper = styled.footer`
-  padding: 1rem;
-  border-top: 1px solid #ddd;
-  margin-top: 2rem;
+  border-top: 1px solid #e9e9e9;
+  padding: 1rem 0;
 `;
 
 export default function Footer() {
   return (
     <Wrapper>
-      <small>© {new Date().getFullYear()} JS Frameworks CA</small>
+      <Container>
+        <small>© {new Date().getFullYear()} JS Frameworks CA</small>
+      </Container>
     </Wrapper>
   );
 }

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getProductById } from "../api/products";
 import { useCart } from "../context/CartContext";
 import placeholder from "../images/placeholder.png";
+import { Button } from "../components/ui/Button";
 
 const Wrapper = styled.div`
   display: grid;
@@ -38,12 +39,6 @@ const Badge = styled.span`
   font-size: 0.9rem;
 `;
 
-const Button = styled.button`
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-`;
 
 export default function Product() {
   const { id } = useParams();

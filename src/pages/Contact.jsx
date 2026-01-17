@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import styled from "styled-components";
+import { Button } from "../components/ui/Button";
 
 const Wrapper = styled.div`
   max-width: 700px;
@@ -40,14 +41,6 @@ const Textarea = styled.textarea`
 const ErrorText = styled.p`
   margin: 0;
   font-size: 0.9rem;
-`;
-
-const Button = styled.button`
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  font: inherit;
 `;
 
 const Success = styled.div`

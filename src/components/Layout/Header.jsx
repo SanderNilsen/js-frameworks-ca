@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import styled from "styled-components";
 import logo from "../../images/logo.png";
+import Container from "../ui/Container";
 
 const Wrapper = styled.header`
   position: sticky;
@@ -17,7 +18,7 @@ const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.9rem 1rem;
+  padding: 0.9rem 1rem 1rem 0rem;
 
   @media (min-width: 640px) {
     max-width: 1100px;
@@ -89,11 +90,16 @@ const Nav = styled.nav`
   }
 `;
 
-const MobileNav = styled.nav`
-  display: ${(props) => (props.$open ? "grid" : "none")};
+const MobileMenu = styled.div`
+  display: grid;
   gap: 0.5rem;
-  padding: 0.5rem 1rem 1rem 1rem;
+`;
+
+const MobileNav = styled.nav`
+  display: ${(props) => (props.$open ? "block" : "none")};
+  padding: 0.75rem 0 1rem 0;
   border-bottom: 1px solid #e9e9e9;
+  background: #fff;
 
   @media (min-width: 768px) {
     display: none;
@@ -145,6 +151,7 @@ export default function Header() {
 
   return (
     <Wrapper>
+     <Container>
       <Inner>
         <Brand to="/" aria-label="Go to homepage" onClick={closeMenu}>
           <Logo src={logo} alt="Store logo" />
@@ -168,18 +175,19 @@ export default function Header() {
           </CartLink>
         </Nav>
       </Inner>
+    </Container>
 
       {/* Mobile nav */}
       <MobileNav $open={open}>
-        <StyledNavLink to="/" onClick={closeMenu}>
-          Home
-        </StyledNavLink>
-        <StyledNavLink to="/contact" onClick={closeMenu}>
-          Contact
-        </StyledNavLink>
-        <CartLink to="/cart" onClick={closeMenu}>
-          Cart <Badge>{cartCount}</Badge>
-        </CartLink>
+        <Container>
+          <MobileMenu>
+            <StyledNavLink to="/" onClick={closeMenu}>Home</StyledNavLink>
+            <StyledNavLink to="/contact" onClick={closeMenu}>Contact</StyledNavLink>
+            <CartLink to="/cart" onClick={closeMenu}>
+              Cart <Badge>{cartCount}</Badge>
+            </CartLink>
+          </MobileMenu>
+        </Container>
       </MobileNav>
     </Wrapper>
   );

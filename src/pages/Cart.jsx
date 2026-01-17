@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useCart } from "../context/CartContext";
 import placeholder from "../images/placeholder.png";
+import { ButtonLink, Button } from "../components/ui/Button";
 
 const Wrapper = styled.div`
   max-width: 900px;
@@ -44,13 +45,6 @@ const Controls = styled.div`
   justify-content: flex-end;
 `;
 
-const Btn = styled.button`
-  padding: 0.5rem 0.75rem;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-`;
-
 const Summary = styled.div`
   display: flex;
   justify-content: space-between;
@@ -68,7 +62,7 @@ export default function Cart() {
       <Wrapper>
         <h1>Cart</h1>
         <p>Your cart is empty.</p>
-        <Link to="/">Go shopping</Link>
+        <ButtonLink to="/">Go Shopping</ButtonLink>
       </Wrapper>
     );
   }
@@ -100,9 +94,9 @@ export default function Cart() {
             </div>
 
             <Controls>
-              <Btn onClick={() => removeOne(p.id)}>-</Btn>
+              <Button onClick={() => removeOne(p.id)}>-</Button>
               <span>{p.quantity}</span>
-              <Btn onClick={() => addToCart(p)}>+</Btn>
+              <Button onClick={() => addToCart(p)}>+</Button>
             </Controls>
           </Item>
         );
@@ -110,7 +104,7 @@ export default function Cart() {
 
       <Summary>
         <strong>Total: {total.toFixed(2)}</strong>
-        <Btn onClick={() => navigate("/checkout-success")}>Checkout</Btn>
+        <Button onClick={() => navigate("/checkout-success")}>Checkout</Button>
       </Summary>
     </Wrapper>
   );
