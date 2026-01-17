@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useCart } from "../context/CartContext";
+import placeholder from "../images/placeholder.png";
 
 const Wrapper = styled.div`
   max-width: 900px;
@@ -78,7 +79,7 @@ export default function Cart() {
 
       {cart.map((p) => {
         const imgSrc =
-          p.image?.url;
+          p.image?.url || placeholder;
 
         return (
           <Item key={p.id}>
@@ -86,7 +87,7 @@ export default function Cart() {
               src={imgSrc}
               alt={p.title}
               onError={(e) => {
-                e.currentTarget.src = "/placeholder.png"; // Add fallback image later
+              e.currentTarget.src = placeholder;
               }}
             />
 

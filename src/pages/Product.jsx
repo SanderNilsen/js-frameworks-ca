@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getProductById } from "../api/products";
 import { useCart } from "../context/CartContext";
+import placeholder from "../images/placeholder.png";
 
 const Wrapper = styled.div`
   display: grid;
@@ -85,8 +86,7 @@ export default function Product() {
   if (error) return <p>{error}</p>;
   if (!product) return <p>Not found</p>;
 
-  const imgSrc =
-    product.image?.url;
+  const imgSrc = product.image?.url || placeholder;
 
   return (
     <Wrapper>
@@ -96,7 +96,7 @@ export default function Product() {
         src={imgSrc}
         alt={product.title}
         onError={(e) => {
-          e.currentTarget.src = "/placeholder.png"; // Add fallback image later
+          e.currentTarget.src = placeholder;
         }}
       />
 
