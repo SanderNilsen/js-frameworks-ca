@@ -1,45 +1,186 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import styled from "styled-components";
+import logo from "../../images/logo.png";
 
 const Wrapper = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #e9e9e9;
+  background: #fff;
+`;
+
+const Inner = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
+  padding: 0.9rem 1rem;
+
+  @media (min-width: 640px) {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 `;
 
 const Brand = styled(Link)`
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+`;
+
+const Logo = styled.img`
+  height: 40px;
+  width: auto;
+  display: block;
+`;
+
+const MenuButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background: #fff;
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+`;
+
+const Bars = styled.span`
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+  display: inline-block;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+  }
+
+  &::before {
+    top: -6px;
+  }
+
+  &::after {
+    top: 6px;
+  }
 `;
 
 const Nav = styled.nav`
-  display: flex;
-  gap: 1rem;
+  display: none;
+
+  @media (min-width: 640px) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+`;
+
+const MobileNav = styled.nav`
+  display: ${(props) => (props.$open ? "grid" : "none")};
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+  border-bottom: 1px solid #e9e9e9;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
-  opacity: 0.85;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+  opacity: 0.9;
+
+  &:hover {
+    background: #f5f5f5;
+    opacity: 1;
+  }
 
   &.active {
+    background: #efefef;
     opacity: 1;
-    text-decoration: underline;
   }
+`;
+
+const CartLink = styled(StyledNavLink)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+`;
+
+const Badge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid #ddd;
+  background: #fff;
 `;
 
 export default function Header() {
   const { cartCount } = useCart();
+  const [open, setOpen] = useState(false);
+
+  function closeMenu() {
+    setOpen(false);
+  }
 
   return (
     <Wrapper>
-      <Brand to="/">Logo</Brand>
+      <Inner>
+        <Brand to="/" aria-label="Go to homepage" onClick={closeMenu}>
+          <Logo src={logo} alt="Store logo" />
+        </Brand>
 
-      <Nav>
-        <StyledNavLink to="/">Home</StyledNavLink>
-        <StyledNavLink to="/contact">Contact</StyledNavLink>
-        <StyledNavLink to="/cart">Cart ({cartCount})</StyledNavLink>
-      </Nav>
+        <MenuButton
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <Bars />
+        </MenuButton>
+
+        {/* Desktop nav */}
+        <Nav>
+          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/contact">Contact</StyledNavLink>
+          <CartLink to="/cart">
+            Cart <Badge>{cartCount}</Badge>
+          </CartLink>
+        </Nav>
+      </Inner>
+
+      {/* Mobile nav */}
+      <MobileNav $open={open}>
+        <StyledNavLink to="/" onClick={closeMenu}>
+          Home
+        </StyledNavLink>
+        <StyledNavLink to="/contact" onClick={closeMenu}>
+          Contact
+        </StyledNavLink>
+        <CartLink to="/cart" onClick={closeMenu}>
+          Cart <Badge>{cartCount}</Badge>
+        </CartLink>
+      </MobileNav>
     </Wrapper>
   );
 }
