@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { getProducts } from "../api/products";
-import ProductCard from "../components/ProductCard/ProductCard";
+import ProductCard from "../components/ProductCard";
 
 const Wrapper = styled.div`
   display: grid;
