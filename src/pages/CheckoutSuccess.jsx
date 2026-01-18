@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   max-width: 700px;
   display: grid;
   gap: 1rem;
+  margin: auto;
 `;
 
 export default function CheckoutSuccess() {

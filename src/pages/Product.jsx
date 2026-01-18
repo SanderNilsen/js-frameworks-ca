@@ -5,40 +5,34 @@ import { getProductById } from "../api/products";
 import { useCart } from "../context/CartContext";
 import placeholder from "../images/placeholder.png";
 import { Button } from "../components/ui/Button";
+import DiscountBadge from "../components/ui/DiscountBadge";
+import { PriceRow, SalePrice, OldPrice } from "../components/ui/Price";
 
 const Wrapper = styled.div`
+  max-width: 700px;
+  margin: 2rem auto;
+`;
+
+const Card = styled.div`
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   display: grid;
   gap: 1rem;
-  max-width: 900px;
 `;
 
 const Img = styled.img`
   width: 100%;
-  max-height: 420px;
+  max-height: 500px;
   object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid #ddd;
+  border-radius: 10px;
+  display: block;
 `;
 
-const PriceRow = styled.div`
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
+const ImageWrapper = styled.div`
+  position: relative;
 `;
-
-const OldPrice = styled.span`
-  text-decoration: line-through;
-  opacity: 0.7;
-`;
-
-const Badge = styled.span`
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 999px;
-  font-size: 0.9rem;
-`;
-
 
 export default function Product() {
   const { id } = useParams();
@@ -84,9 +78,11 @@ export default function Product() {
   const imgSrc = product.image?.url || placeholder;
 
   return (
-    <Wrapper>
-      <h1>{product.title}</h1>
+<Wrapper>
+  <Card>
+    <h1>{product.title}</h1>
 
+    <ImageWrapper>
       <Img
         src={imgSrc}
         alt={product.title}
@@ -95,30 +91,31 @@ export default function Product() {
         }}
       />
 
-      <p>{product.description}</p>
+      {discount > 0 && <DiscountBadge>-{discount}%</DiscountBadge>}
+    </ImageWrapper>
 
-      <PriceRow>
-        <strong>{product.discountedPrice}</strong>
-        {product.price !== product.discountedPrice && (
-          <>
-            <OldPrice>{product.price}</OldPrice>
-            <Badge>-{discount}%</Badge>
-          </>
-        )}
-      </PriceRow>
+    <p>{product.description}</p>
 
-      <Button onClick={() => addToCart(product)}>Add to cart</Button>
-
-      {Array.isArray(product.reviews) && product.reviews.length > 0 && (
-        <div>
-          <h2>Reviews</h2>
-          {product.reviews.map((r) => (
-            <p key={r.id}>
-              <strong>{r.username}</strong>: {r.description}
-            </p>
-          ))}
-        </div>
+    <PriceRow>
+      <SalePrice>{product.discountedPrice}</SalePrice>
+      {product.price !== product.discountedPrice && (
+        <OldPrice>{product.price}</OldPrice>
       )}
-    </Wrapper>
+    </PriceRow>
+
+    <Button onClick={() => addToCart(product)}>Add to cart</Button>
+
+    {Array.isArray(product.reviews) && product.reviews.length > 0 && (
+      <div>
+        <h2>Reviews</h2>
+        {product.reviews.map((r) => (
+          <p key={r.id}>
+            <strong>{r.username}</strong>: {r.description}
+          </p>
+        ))}
+      </div>
+    )}
+  </Card>
+</Wrapper>
   );
 }

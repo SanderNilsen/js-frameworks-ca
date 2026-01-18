@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   max-width: 900px;
   display: grid;
   gap: 1rem;
+  margin: auto;
 `;
 
 const Item = styled.div`

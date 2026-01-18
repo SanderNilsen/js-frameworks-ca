@@ -6,7 +6,8 @@ const Wrapper = styled.div`
   max-width: 700px;
   display: grid;
   gap: 1rem;
-`;
+  margin: auto;
+  `; 
 
 const Form = styled.form`
   display: grid;
@@ -98,6 +99,8 @@ export default function Contact() {
     setTouched({ fullName: true, subject: true, email: true, body: true });
 
     if (!isFormValid) return;
+
+    console.log("Contact form submitted:", values);
 
     setSubmitted(true);
     setValues({ fullName: "", subject: "", email: "", body: "" });

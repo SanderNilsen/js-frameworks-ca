@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useCart } from "../context/CartContext";
 import { Button, ButtonLink } from "./ui/Button";
 import placeholder from "../images/placeholder.png";
+import DiscountBadge from "./ui/DiscountBadge";
+import { PriceRow, SalePrice, OldPrice } from "./ui/Price";
 
 const Card = styled.article`
   border: 1px solid #e5e5e5;
@@ -23,17 +25,6 @@ const Img = styled.img`
   display: block;
 `;
 
-const DiscountBadge = styled.span`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #c62828;
-  color: #fff;
-  font-size: 0.85rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-`;
-
 const Content = styled.div`
   padding: 0 0.75rem 0.75rem;
   display: grid;
@@ -43,23 +34,6 @@ const Content = styled.div`
 const Title = styled.h2`
   font-size: 1rem;
   margin: 0;
-`;
-
-const PriceRow = styled.div`
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-`;
-
-const SalePrice = styled.span`
-  color: #c62828;
-  font-weight: 600;
-`;
-
-const OldPrice = styled.span`
-  text-decoration: line-through;
-  font-size: 0.9rem;
-  opacity: 0.7;
 `;
 
 const Actions = styled.div`
