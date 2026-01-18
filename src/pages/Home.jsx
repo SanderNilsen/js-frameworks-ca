@@ -12,6 +12,7 @@ const Search = styled.input`
   padding: 0.75rem 0.9rem;
   border-radius: 12px;
   border: 1px solid #ddd;
+  box-shadow: 0 6px 20px rgba(79, 79, 79, 0.08);
 `;
 
 const Grid = styled.div`

@@ -9,8 +9,8 @@ const Wrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid #e9e9e9;
   background: #fff;
+  box-shadow: 0 6px 20px rgba(79, 79, 79, 0.08);
 `;
 
 const Inner = styled.div`
@@ -30,6 +30,13 @@ const Brand = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.6rem;
+`;
+
+const BrandText = styled.span`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-gold);
+  letter-spacing: 0.5px;
 `;
 
 const Logo = styled.img`
@@ -153,8 +160,9 @@ export default function Header() {
     <Wrapper>
      <Container>
       <Inner>
-        <Brand to="/" aria-label="Go to homepage" onClick={closeMenu}>
+        <Brand to="/" aria-label="Go to homepage">
           <Logo src={logo} alt="Store logo" />
+          <BrandText>eCom</BrandText>
         </Brand>
 
         <MenuButton

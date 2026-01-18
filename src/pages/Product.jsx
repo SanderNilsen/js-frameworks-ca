@@ -7,19 +7,11 @@ import placeholder from "../images/placeholder.png";
 import { Button } from "../components/ui/Button";
 import DiscountBadge from "../components/ui/DiscountBadge";
 import { PriceRow, SalePrice, OldPrice } from "../components/ui/Price";
+import Card from "../components/ui/Card";
 
 const Wrapper = styled.div`
   max-width: 700px;
   margin: 2rem auto;
-`;
-
-const Card = styled.div`
-  background: #fff;
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  display: grid;
-  gap: 1rem;
 `;
 
 const Img = styled.img`

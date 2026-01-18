@@ -4,15 +4,7 @@ import { Button, ButtonLink } from "./ui/Button";
 import placeholder from "../images/placeholder.png";
 import DiscountBadge from "./ui/DiscountBadge";
 import { PriceRow, SalePrice, OldPrice } from "./ui/Price";
-
-const Card = styled.article`
-  border: 1px solid #e5e5e5;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-  display: grid;
-  gap: 0.75rem;
-`;
+import Card from "./ui/Card";
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -23,6 +15,7 @@ const Img = styled.img`
   height: 300px;
   object-fit: cover;
   display: block;
+  border-radius: 10px;
 `;
 
 const Content = styled.div`

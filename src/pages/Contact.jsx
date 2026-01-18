@@ -1,12 +1,13 @@
 import { useMemo, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../components/ui/Button";
+import Card from "../components/ui/Card";
 
 const Wrapper = styled.div`
   max-width: 700px;
   display: grid;
   gap: 1rem;
-  margin: auto;
+  margin: 2rem auto;
   `; 
 
 const Form = styled.form`
@@ -109,6 +110,7 @@ export default function Contact() {
 
   return (
     <Wrapper>
+      <Card>
       <h1>Contact</h1>
       <p>Send us a message using the form below.</p>
 
@@ -177,6 +179,7 @@ export default function Contact() {
           Send message
         </Button>
       </Form>
+      </Card>
     </Wrapper>
   );
 }

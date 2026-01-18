@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { useCart } from "../context/CartContext";
 import placeholder from "../images/placeholder.png";
 import { ButtonLink, Button } from "../components/ui/Button";
+import Card from "../components/ui/Card";
 
 const Wrapper = styled.div`
-  max-width: 900px;
+  max-width: 800px;
   display: grid;
   gap: 1rem;
-  margin: auto;
+  margin: 2rem auto;
 `;
 
 const Item = styled.div`
@@ -70,6 +71,7 @@ export default function Cart() {
 
   return (
     <Wrapper>
+      <Card>
       <h1>Cart</h1>
 
       {cart.map((p) => {
@@ -107,6 +109,7 @@ export default function Cart() {
         <strong>Total: {total.toFixed(2)}</strong>
         <Button onClick={() => navigate("/checkout-success")}>Checkout</Button>
       </Summary>
+      </Card>
     </Wrapper>
   );
 }
