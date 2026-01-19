@@ -8,6 +8,7 @@ import { Button } from "../components/ui/Button";
 import DiscountBadge from "../components/ui/DiscountBadge";
 import { PriceRow, SalePrice, OldPrice } from "../components/ui/Price";
 import Card from "../components/ui/Card";
+import Loader from "../components/ui/Loader";
 
 const Wrapper = styled.div`
   max-width: 700px;
@@ -63,7 +64,7 @@ export default function Product() {
     return Math.round(((price - discountedPrice) / price) * 100);
   }, [product]);
 
-  if (isLoading) return <p>Loading…</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>{error}</p>;
   if (!product) return <p>Not found</p>;
 

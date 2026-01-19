@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { getProducts } from "../api/products";
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/ui/Loader";
 
 const Wrapper = styled.div`
   display: grid;
@@ -78,7 +79,7 @@ export default function Home() {
         onChange={(e) => setQuery(e.target.value)}
       />
 
-      {isLoading && <p>Loading…</p>}
+      {isLoading && <Loader/>}
       {error && <p>{error}</p>}
 
       {!isLoading && !error && (
