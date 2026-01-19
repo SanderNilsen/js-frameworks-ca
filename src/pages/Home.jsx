@@ -20,7 +20,7 @@ const Grid = styled.div`
   display: grid;
   gap: 1rem;
 
-  @media (min-width: 640px) {
+  @media (min-width: 690px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
