@@ -5,6 +5,8 @@ import placeholder from "../images/placeholder.png";
 import DiscountBadge from "./ui/DiscountBadge";
 import { PriceRow, SalePrice, OldPrice } from "./ui/Price";
 import Card from "./ui/Card";
+import { useState } from "react";
+import Toast from "./ui/Toast";
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -53,6 +55,18 @@ export default function ProductCard({ product }) {
       ? Math.round(((price - discountedPrice) / price) * 100)
       : null;
 
+  const [toast, setToast] = useState("");
+
+  function handleAdd() {
+    addToCart(product);
+    setToast("Added to cart");
+
+    window.clearTimeout(window.__toastTimerCard);
+    window.__toastTimerCard = window.setTimeout(() => {
+      setToast("");
+    }, 3000);
+  }
+
   return (
     <Card>
       <ImageWrapper>
@@ -80,15 +94,14 @@ export default function ProductCard({ product }) {
         </PriceRow>
 
         <Actions>
-          <Button onClick={() => addToCart(product)}>
-            Add to cart
-          </Button>
+          <Button onClick={handleAdd}>Add to cart</Button>
 
           <ButtonLink to={`/product/${id}`}>
             View product
           </ButtonLink>
         </Actions>
       </Content>
+     <Toast message={toast} />
     </Card>
   );
 }

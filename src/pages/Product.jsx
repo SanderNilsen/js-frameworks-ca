@@ -9,6 +9,7 @@ import DiscountBadge from "../components/ui/DiscountBadge";
 import { PriceRow, SalePrice, OldPrice } from "../components/ui/Price";
 import Card from "../components/ui/Card";
 import Loader from "../components/ui/Loader";
+import Toast from "../components/ui/Toast";
 
 const Wrapper = styled.div`
   max-width: 700px;
@@ -34,6 +35,17 @@ export default function Product() {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [toast, setToast] = useState("");
+
+  function handleAdd() {
+    addToCart(product);
+    setToast("Added to cart");
+
+    window.clearTimeout(window.__toastTimer);
+    window.__toastTimer = window.setTimeout(() => {
+      setToast("");
+    }, 3000);
+  }
 
   useEffect(() => {
     let isMounted = true;
@@ -96,7 +108,7 @@ export default function Product() {
       )}
     </PriceRow>
 
-    <Button onClick={() => addToCart(product)}>Add to cart</Button>
+    <Button onClick={handleAdd}>Add to cart</Button>
 
     {Array.isArray(product.reviews) && product.reviews.length > 0 && (
       <div>
@@ -108,7 +120,7 @@ export default function Product() {
         ))}
       </div>
     )}
-  </Card>
+  </Card>  <Toast message={toast} />
 </Wrapper>
   );
 }
