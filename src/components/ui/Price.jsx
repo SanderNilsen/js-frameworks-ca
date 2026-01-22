@@ -6,13 +6,14 @@ export const PriceRow = styled.div`
   gap: 0.5rem;
 `;
 
-export const SalePrice = styled.span`
-  color: #c62828;
-  font-weight: 700;
+export const Price = styled.span`
+  font-weight: 500;
+  color: #111;
+  text-decoration: ${(props) => (props.$isDiscounted ? "line-through" : "none")};
+  opacity: ${(props) => (props.$isDiscounted ? 0.6 : 1)};
 `;
 
-export const OldPrice = styled.span`
-  text-decoration: line-through;
-  font-size: 0.9rem;
-  opacity: 0.7;
+export const SalePrice = styled.span`
+  font-weight: 800;
+  color: #c62828;
 `;

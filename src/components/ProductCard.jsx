@@ -3,7 +3,7 @@ import { useCart } from "../context/CartContext";
 import { Button, ButtonLink } from "./ui/Button";
 import placeholder from "../images/placeholder.png";
 import DiscountBadge from "./ui/DiscountBadge";
-import { PriceRow, SalePrice, OldPrice } from "./ui/Price";
+import { PriceRow, SalePrice, Price } from "./ui/Price";
 import Card from "./ui/Card";
 import { useState } from "react";
 import Toast from "./ui/Toast";
@@ -55,6 +55,8 @@ export default function ProductCard({ product }) {
       ? Math.round(((price - discountedPrice) / price) * 100)
       : null;
 
+  const hasDiscount = product.price !== product.discountedPrice;
+
   const [toast, setToast] = useState("");
 
   function handleAdd() {
@@ -87,9 +89,13 @@ export default function ProductCard({ product }) {
         <Title>{title}</Title>
 
         <PriceRow>
-          <SalePrice>{discountedPrice}</SalePrice>
-          {price !== discountedPrice && (
-            <OldPrice>{price}</OldPrice>
+          {hasDiscount ? (
+            <>
+              <SalePrice>{product.discountedPrice},-</SalePrice>
+              <Price $isDiscounted>{product.price},-</Price>
+            </>
+          ) : (
+            <Price>{product.price},-</Price>
           )}
         </PriceRow>
 

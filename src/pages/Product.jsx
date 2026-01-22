@@ -6,7 +6,7 @@ import { useCart } from "../context/CartContext";
 import placeholder from "../images/placeholder.png";
 import { Button } from "../components/ui/Button";
 import DiscountBadge from "../components/ui/DiscountBadge";
-import { PriceRow, SalePrice, OldPrice } from "../components/ui/Price";
+import { PriceRow, SalePrice, Price } from "../components/ui/Price";
 import Card from "../components/ui/Card";
 import Loader from "../components/ui/Loader";
 import Toast from "../components/ui/Toast";
@@ -26,6 +26,10 @@ const Img = styled.img`
 
 const ImageWrapper = styled.div`
   position: relative;
+`;
+
+const Title = styled.h1`
+  margin-bottom: 0rem;
 `;
 
 export default function Product() {
@@ -82,10 +86,14 @@ export default function Product() {
 
   const imgSrc = product.image?.url || placeholder;
 
+  const hasDiscount = product.price !== product.discountedPrice;
+
   return (
 <Wrapper>
   <Card>
-    <h1>{product.title}</h1>
+    
+    <Title>{product.title}</Title>
+    <p>{product.description}</p>
 
     <ImageWrapper>
       <Img
@@ -99,12 +107,14 @@ export default function Product() {
       {discount > 0 && <DiscountBadge>-{discount}%</DiscountBadge>}
     </ImageWrapper>
 
-    <p>{product.description}</p>
-
     <PriceRow>
-      <SalePrice>{product.discountedPrice}</SalePrice>
-      {product.price !== product.discountedPrice && (
-        <OldPrice>{product.price}</OldPrice>
+      {hasDiscount ? (
+        <>
+          <SalePrice>{product.discountedPrice},-</SalePrice>
+          <Price $isDiscounted>{product.price},-</Price>
+        </>
+      ) : (
+        <Price>{product.price},-</Price>
       )}
     </PriceRow>
 
