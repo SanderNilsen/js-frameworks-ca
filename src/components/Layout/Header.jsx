@@ -148,6 +148,16 @@ const Badge = styled.span`
   background: #fff;
 `;
 
+const NavRight = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+`;
+
 export default function Header() {
   const { cartCount } = useCart();
   const [open, setOpen] = useState(false);
@@ -165,14 +175,20 @@ export default function Header() {
           <BrandText>eCom</BrandText>
         </Brand>
 
-        <MenuButton
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <Bars />
-        </MenuButton>
+    <NavRight>
+      <CartLink to="/cart">
+         Cart <Badge>{cartCount}</Badge>
+      </CartLink>
+
+      <MenuButton
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <Bars />
+      </MenuButton>
+    </NavRight>
 
         {/* Desktop nav */}
         <Nav>
