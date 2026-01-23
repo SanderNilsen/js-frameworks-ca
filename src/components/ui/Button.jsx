@@ -19,7 +19,8 @@ const baseStyles = `
   transition: background 0.15s ease, opacity 0.15s ease;
 
   &:hover {
-    background: #f5f5f5;
+    background: var(--brand-gold);
+    color: #fff;
   }
 
   &:disabled {

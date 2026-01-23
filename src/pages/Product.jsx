@@ -10,6 +10,7 @@ import { PriceRow, SalePrice, Price } from "../components/ui/Price";
 import Card from "../components/ui/Card";
 import Loader from "../components/ui/Loader";
 import Toast from "../components/ui/Toast";
+import StarRating from "../components/ui/StarRating";
 
 const Wrapper = styled.div`
   max-width: 700px;
@@ -30,6 +31,21 @@ const ImageWrapper = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 0rem;
+`;
+
+const Review = styled.div`
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+`;
+
+const ReviewHeader = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+`;
+
+const ReviewText = styled.p`
+  margin-bottom: 0.5rem;
 `;
 
 export default function Product() {
@@ -124,9 +140,13 @@ export default function Product() {
       <div>
         <h2>Reviews</h2>
         {product.reviews.map((r) => (
-          <p key={r.id}>
-            <strong>{r.username}</strong>: {r.description}
-          </p>
+          <Review key={r.id}>
+            <ReviewHeader>
+              <span>{r.username}</span>
+              <StarRating rating={r.rating} />
+            </ReviewHeader>
+            <ReviewText>{r.description}</ReviewText>
+          </Review>
         ))}
       </div>
     )}

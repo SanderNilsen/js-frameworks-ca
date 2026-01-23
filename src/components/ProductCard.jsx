@@ -7,6 +7,7 @@ import { PriceRow, SalePrice, Price } from "./ui/Price";
 import Card from "./ui/Card";
 import { useState } from "react";
 import Toast from "./ui/Toast";
+import StarRating from "./ui/StarRating";
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -87,7 +88,7 @@ export default function ProductCard({ product }) {
 
       <Content>
         <Title>{title}</Title>
-
+        {product.rating > 0 && <StarRating rating={product.rating} />}
         <PriceRow>
           {hasDiscount ? (
             <>
