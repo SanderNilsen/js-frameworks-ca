@@ -43,6 +43,8 @@ const Textarea = styled.textarea`
 const ErrorText = styled.p`
   margin: 0;
   font-size: 0.9rem;
+  color: red;
+  font-weight: 600;
 `;
 
 const Success = styled.div`
@@ -117,7 +119,7 @@ export default function Contact() {
       {submitted && (
         <Success>
           <strong>Message sent!</strong>
-          <p style={{ margin: "0.5rem 0 0 0" }}>Thanks — we’ll get back to you soon.</p>
+          <p style={{ margin: "0.5rem 0 0 0" }}>Thank you for your message! We'll get back to you as soon as possible.</p>
         </Success>
       )}
 

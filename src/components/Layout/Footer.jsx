@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <Wrapper>
       <Container>
-        <small>© {new Date().getFullYear()} JS Frameworks CA</small>
+        <small>© {new Date().getFullYear()} Sander Nilsen - JS Frameworks CA</small>
       </Container>
     </Wrapper>
   );
