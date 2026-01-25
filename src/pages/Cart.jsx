@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import placeholder from "../images/placeholder.png";
 import { ButtonLink, Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
+import { formatPrice } from "../utils/formatPrice";
 
 const Wrapper = styled.div`
   max-width: 800px;
@@ -91,8 +92,8 @@ export default function Cart() {
             <div>
               <Title>{p.title}</Title>
               <Price>
-                {p.discountedPrice} × {p.quantity} ={" "}
-                <strong>{(p.discountedPrice * p.quantity).toFixed(2)}</strong>
+                {formatPrice(p.discountedPrice)} × {p.quantity} ={" "}
+                <strong>{formatPrice(p.discountedPrice * p.quantity)}</strong>
               </Price>
             </div>
 
@@ -106,7 +107,7 @@ export default function Cart() {
       })}
 
       <Summary>
-        <strong>Total: {total.toFixed(2)}</strong>
+        <strong>Total: {formatPrice(total)}</strong>
         <Button onClick={() => navigate("/checkout-success")}>Checkout</Button>
       </Summary>
       </Card>

@@ -8,6 +8,7 @@ import Card from "./ui/Card";
 import { useState } from "react";
 import Toast from "./ui/Toast";
 import StarRating from "./ui/StarRating";
+import { formatPrice } from "../utils/formatPrice";
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -92,11 +93,11 @@ export default function ProductCard({ product }) {
         <PriceRow>
           {hasDiscount ? (
             <>
-              <SalePrice>{product.discountedPrice},-</SalePrice>
-              <Price $isDiscounted>{product.price},-</Price>
+              <SalePrice>{formatPrice(product.discountedPrice)}</SalePrice>
+              <Price $isDiscounted>{formatPrice(product.price)}</Price>
             </>
           ) : (
-            <Price>{product.price},-</Price>
+            <Price>{formatPrice(product.price)}</Price>
           )}
         </PriceRow>
 

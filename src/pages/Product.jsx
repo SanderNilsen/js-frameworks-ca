@@ -11,6 +11,7 @@ import Card from "../components/ui/Card";
 import Loader from "../components/ui/Loader";
 import Toast from "../components/ui/Toast";
 import StarRating from "../components/ui/StarRating";
+import { formatPrice } from "../utils/formatPrice";
 
 const Wrapper = styled.div`
   max-width: 700px;
@@ -126,11 +127,11 @@ export default function Product() {
     <PriceRow>
       {hasDiscount ? (
         <>
-          <SalePrice>{product.discountedPrice},-</SalePrice>
-          <Price $isDiscounted>{product.price},-</Price>
+          <SalePrice>{formatPrice(product.discountedPrice)}</SalePrice>
+          <Price $isDiscounted>{formatPrice(product.price)}</Price>
         </>
       ) : (
-        <Price>{product.price},-</Price>
+        <Price>{formatPrice(product.price)}</Price>
       )}
     </PriceRow>
 
